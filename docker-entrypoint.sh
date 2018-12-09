@@ -65,6 +65,7 @@ if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
 			targetTarArgs+=( --no-overwrite-dir )
 		fi
 		tar "${sourceTarArgs[@]}" . | tar "${targetTarArgs[@]}"
+		chown "$user:$group" -R $PWD
 		echo >&2 "Complete! WordPress has been successfully copied to $PWD"
 		if [ ! -e .htaccess ]; then
 			# NOTE: The "Indexes" option is disabled in the php:apache base image
